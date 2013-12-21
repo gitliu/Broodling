@@ -1,0 +1,91 @@
+// webActiveX.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (webActiveX.tlb) that will become a resource in
+// webActiveX.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(4505673E-22CB-46EA-BB25-4BC99074D46C), version(1.0),
+  helpfile("webActiveX.hlp"),
+  helpstring("webActiveX ActiveX Control module"),
+  control ]
+library WEBACTIVEXLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CWebActiveXCtrl
+
+	[ uuid(0274AA79-FD91-4E66-8BDF-A9C389BCA957),
+	  helpstring("Dispatch interface for WebActiveX Control"), hidden ]
+	dispinterface _DWebActiveX
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CWebActiveXCtrl)
+			[id(1)] long channelNum;
+			[id(2)] short emImage;
+			[id(3)] long ACodecType;
+			[id(4)] long vaSpeed;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CWebActiveXCtrl)
+			[id(5)] boolean DoLogin(BSTR e_DevIp, long e_DevPort, BSTR e_DevUser, BSTR e_DevPWS, short e_DevInfo, short e_Channel);
+			[id(6)] boolean DoLogout(short e_DevInfo, short e_nChannel);
+			[id(7)] short GetnCannel();
+			[id(8)] BSTR GetDevIp();
+			[id(9)] void DoAllout();
+			[id(10)] long GetLeft();
+			[id(11)] long GetTop();
+			[id(12)] long GetWidth();
+			[id(13)] long GetHeight();
+			[id(14)] void PutChannel(short Channel);
+			[id(15)] boolean noPlay(short nChannel);
+			[id(16)] short getdevinfo(short set_channel);
+			[id(17)] boolean IPtoChannel(BSTR nDevIP, long nDevProt);
+			[id(18)] boolean ptzControl(long ptzCommand, short ptzStop, short devInfo);
+			[id(19)] boolean capPicture(BSTR sFileName, short devInfo);
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CWebActiveXCtrl
+
+	[ uuid(2213FCFA-C34F-41D3-A8B7-B013247902F4),
+	  helpstring("Event interface for WebActiveX Control") ]
+	dispinterface _DWebActiveXEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CWebActiveXCtrl)
+			[id(DISPID_CLICK)] void Click();
+			[id(DISPID_DBLCLICK)] void DblClick();
+			[id(DISPID_KEYDOWN)] void KeyDown(short* KeyCode, short Shift);
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CWebActiveXCtrl
+
+	[ uuid(1D14E17E-244C-4898-91A6-D99B0EC17D2A),
+	  helpstring("WebActiveX Control"), control ]
+	coclass WebActiveX
+	{
+		[default] dispinterface _DWebActiveX;
+		[default, source] dispinterface _DWebActiveXEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};
